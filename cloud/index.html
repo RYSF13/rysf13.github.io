@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>Cloud - RYSF13</title>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="../style.css">
+	</head>
+	<body>
+		<center><h1 style="font-size:4rem">RYSF13's Cloud Drive</h1>
+		<nav>      
+      <input type="radio" name="radio2" value="3" id="tab-1"/>
+      <label for="tab-1" class= "nav-1" onclick="goto('../')">
+        <p>Home</p></label>
+      
+      <input type="radio" name="radio2" value="4" id="tab-2" />
+      <label for="tab-2" class= "nav-2" onmousedown="goto('../projects/')">
+        <p>Projects</p></label>
+      
+      <input type="radio" name="radio2" value="5" id="tab-3" />
+      <label for="tab-3" class= "nav-3" onmousedown="goto('../links/')">
+        <p>Links</p></label>
+      
+      <input type="radio" name="radio2" value="6" id="tab-4" />
+      <label for="tab-4" class= "nav-3" onmousedown="goto('../about/')">
+        <p>About</p></label>
+      
+      <input type="radio" name="radio2" value="7" id="tab-5" checked/>
+      <label for="tab-5" class= "nav-3" onmousedown="goto('../others/')">
+        <p>Others</p></label>
+      
+      <div class="nav-color"></nav>
+    </div></center><div class="container"><div class="block">
+   <input id="i" class="input" placeholder="Input cloud code"></input><button onclick="go()">Go!</button>
+<br></div><br><footer><center>Copyright (c) Robert L. Ryan (aka RYSF13) 20XX. | <a href="https://github.com/RYSF13/">GitHub</a></center></footer>
+    <script src="../push.min.js"></script><script>push(["../goto.js","cloud.js"])</script>
+	</body>
+</html>
