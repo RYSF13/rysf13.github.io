@@ -1,1 +1,0 @@
-!function(){window.goto=(e)=>location.href=e}()
