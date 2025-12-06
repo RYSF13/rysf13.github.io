@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<svg width="32" height="32" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg">
+<!-- crosshair -->
+<rect x="0" y="5" width="4" height="1" fill="#e7e5e4"/>
+<rect x="7" y="5" width="4" height="1" fill="#e7e5e4"/>
+<rect x="5" y="0" width="1" height="4" fill="#e7e5e4"/>
+<rect x="5" y="7" width="1" height="4" fill="#e7e5e4"/>
+<rect x="5" y="5" width="1" height="1" fill="#f00"/>
+<!-- border -->
+<rect x="1" y="1" width="3" height="1" fill="#e7e5e4"/>
+<rect x="1" y="1" width="1" height="3" fill="#e7e5e4"/>
+<rect x="7" y="1" width="3" height="1" fill="#e7e5e4"/>
+<rect x="9" y="1" width="1" height="3" fill="#e7e5e4"/>
+<rect x="1" y="9" width="3" height="1" fill="#e7e5e4"/>
+<rect x="1" y="7" width="1" height="3" fill="#e7e5e4"/>
+<rect x="7" y="9" width="3" height="1" fill="#e7e5e4"/>
+<rect x="9" y="7" width="1" height="3" fill="#e7e5e4"/>
+</svg>
