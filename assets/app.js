@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		audioCtx = new AudioContext();
 
 		// --- Play background music (bg.mp3) ---
-		window.bgMusicElement = new Audio('assets/bg.mp3');
+		window.bgMusicElement = new Audio('/assets/bg.mp3');
 		bgMusicElement.loop = true;
 		bgMusicElement.crossOrigin = "anonymous"; // Dealing with cross-domain problems
 
