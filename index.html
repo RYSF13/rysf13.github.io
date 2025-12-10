@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    ______  _______ ______________
+   / __ \ \/ / ___// ____<  /__  /
+  / /_/ /\  /\__ \/ /_   / / /_ < 
+ / _, _/ / /___/ / __/  / /___/ / 
+/_/ |_| /_//____/_/    /_//____/  
+                                  
+-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RYSF13 // SYSTEM_V.1.0</title>
+	<!-- Import fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Consolas:ital,wght@0,400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+	<!-- CRT overlay -->
+	<div class="crt-overlay"></div>
+	<div class="scanline"></div>
+
+	<!-- Intro screen -->
+	<section id="intro-screen">
+		<div class="intro-container">
+			<h1 class="glitch-text" data-text="SYSTEM HALTED">RYSF13_TERMINAL</h1>
+			<p class="mono-text">AWAITING ADMIN'S OPERATION</p>
+			<br>
+			<button id="init-btn" class="button big-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="16.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="icon icon-power" aria-hidden="true"><path d="M12 2v10"></path><path d="M18.4 6.6a9 9 0 1 1-12.77.04"></path></svg> INITIALIZE</button>
+		</div>
+	</section>
+
+	<!-- Main interface -->
+	<main id="main-interface" style="display: none;">
+		
+		<!-- navigation bar -->
+		<header class="top-bar">
+			<div class="logo">RYSF13 // <span class="highlight">TERMINAL_01</span></div>
+			<div class="marquee-container">
+				<div class="marquee-content">&nbsp;CONNECTION ESTABLISHED </div>
+			</div>
+			<div class="status-indicator">ONLINE <span class="blink-dot"></span></div>
+		</header>
+
+		<div class="layout-grid">
+			<!-- Left: datas -->
+			<aside class="col-left"><div class="_fixed"><br>
+				
+				<div class="box">
+					<div class="box-header">SYS_INFO</div>
+					<ul class="data-list">
+						<li><span>UPTIME:</span> 4892h</li>
+						<li><span>CPU_TEMP:</span> 42°C</li>
+						<li><span>CORE:</span> STABLE</li>
+						<li><span>FPS: </span><div id="fps"></div></li>
+						<li><span>SYS_TIME: </span><div id="time"></div></li>
+					</ul>
+				</div>
+
+				<!-- Oscilloscope -->
+				<div class="box">
+					<div class="box-header">SIGNAL_ANALYSIS</div>
+					<canvas id="oscilloscope" class="oscilloscope"></canvas>
+					<div class="caption-text">FREQ: 440Hz // GAIN: 80%</div>
+				</div>
+				<!-- Progress bars -->
+				<div class="box">
+					<div class="box-header">DISK_USAGE</div>
+					<div class="label-row"><span>ROOT</span><span>84%</span></div>
+					<div class="progress-bar" style="--p: 84%"></div>
+					
+					<div class="label-row"><span>BKUP</span><span>32%</span></div>
+					<div class="progress-bar secondary" style="--p: 32%"></div>
+				</div>
+				
+			</div></aside>
+
+			<!-- Center -->
+			<section class="col-center">
+				<!-- Terminal Simulation -->
+				<div class="terminal-window">
+					<div class="terminal-output" id="terminal-output"></div>
+				</div>
+				<div class="line">
+					<span class="line-label">SECTOR_01</span>
+				</div>
+				<div class="box">
+					<div class="box-header primary-bg">HELLO WORLD</div>
+					<center><br><pre id="earth"></pre></center>
+				</div>
+				<div class="line">
+					<span class="line-label">SECTOR_02</span>
+				</div>
+
+				<div class="img-text">
+					<img class="img-placeholder" src="assets/img.png"></img>
+					<div class="text-content">
+						<h3>WELCOME TO THE FUTURE</h3>
+						<p>The tape hisses as the reel begins to spin, syncing with the low hum of the mainframe. The CRT monitor flickers to life, scrolling through lines of amber code as the analog systems align with the digital horizon.
+						<br>Sensors loaded. Interface ready. Welcome to the future.</p>
+					</div>
+				</div>
+
+				<div class="line">
+					<span class="line-label">SECTOR_03</span>
+				</div>
+
+				<div class="three">
+					<div class="box">
+						<div class="box-header">Projects</div>
+						<ul>
+							<li><a href="https://github.com/RYSF13/ToolJS/">ToolJS</a></li>
+							<li><a href="https://github.com/RYSF13/CIH/">CIH(Archived)</a></li>
+							<li><a href="https://github.com/RYSF13/FPL/">The Free Publishing License</a></li>
+						</ul>
+					</div>
+					<div class="box">
+						<div class="box-header warning-bg">Links</div>
+						<ul>
+						<li><a href="https://www.lubeiluchen.cc">Lu Bei Lu Chen</a></li>
+						<li><a href="https://iwriteiam.nl">Frans</a></li>
+						<li><a href="https://code.golf">Code.Golf</a></li></ul>
+					</div>
+					<div class="box">
+						<div class="box-header">Explore</div>
+						<ul>
+							<li><a href="about:blank">Please enter text</a></li>
+							<li><a href="/cicada3301/">3301</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<script src="assets/app.js"></script>
+</body>
+</html>
