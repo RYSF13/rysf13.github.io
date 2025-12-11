@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		audioCtx = new AudioContext();
 
 		// --- Play background music (bg.mp3) ---
-		window.bgMusicElement = new Audio('/assets/bg.mp3');
+		window.bgMusicElement = new Audio('assets/bg.mp3');
 		bgMusicElement.loop = true;
 		bgMusicElement.crossOrigin = "anonymous"; // Dealing with cross-domain problems
 
@@ -80,29 +80,44 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const ctx = canvas.getContext('2d');
 		
-		// Adapt the width of the container
-		if (canvas.width !== canvas.parentElement.clientWidth) {
-			canvas.width = canvas.parentElement.clientWidth;
-			canvas.height = 80;
-		}
-
-		const width = canvas.width;
-		const height = canvas.height;
+		// New: Use ResizeObserver to automatically handle responsive adjustments and 'display: none' after recovery
+		const resizeObserver = new ResizeObserver(entries => {
+			for (let entry of entries) {
+				// Get the width of the parent container
+				const newWidth = Math.floor(entry.contentRect.width);
+				
+				// Reset only when the width is greater than 0 (that is, the sidebar is visible) and does not match the width of the current canvas
+				if (newWidth > 0 && canvas.width !== newWidth) {
+					canvas.width = newWidth;
+					canvas.height = 80; // Maintain the fixed height in the original code and it can also be modified as needed
+				}
+			}
+		});
+		
+		// Start listening to the parent element, make sure canvas always fills the parent container
+		resizeObserver.observe(canvas.parentElement);
 
 		// Rendering loop
 		function render() {
 			requestAnimationFrame(render);
 
+			const width = canvas.width;
+			const height = canvas.height;
+
+			// If width is 0, skip drawing
+			if (width === 0) return;
+
 			// Get byte time time domain data
-			if (analyser) {
+			// Assume that analyser and dataArray are global variables or out-of-closure variables
+			if (typeof analyser !== 'undefined' && analyser) {
 				analyser.getByteTimeDomainData(dataArray);
 			} else {
 				// If the audio is not initialized, fill in the silent data.
-				if (!dataArray) return;
+				if (typeof dataArray === 'undefined' || !dataArray) return;
 				dataArray.fill(128); 
 			}
 
-			// Clear the canvas (with a slight drag effect to increase the afterglow of CRT fluorescence)
+			// Clear the canvas
 			ctx.fillStyle = 'rgba(0, 0, 0, 0.4)'; 
 			ctx.fillRect(0, 0, width, height);
 
@@ -111,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			ctx.strokeStyle = '#03e303'; // Fluorescent green
 			ctx.beginPath();
 
+			// Recalculate the width of each slice based on the current width
 			const sliceWidth = width * 1.0 / dataArray.length;
 			let x = 0;
 
@@ -127,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				x += sliceWidth;
 			}
 
-			ctx.lineTo(canvas.width, canvas.height / 2);
+			ctx.lineTo(width, height / 2);
 			ctx.stroke();
 
 			// Draw grid lines (decoration)
