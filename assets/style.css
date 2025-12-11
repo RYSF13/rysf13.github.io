@@ -187,7 +187,7 @@ h1, h2, h3, h4, h5, h6, .box-header, .line-label, .button {
 .layout-grid {
 	margin:10px;
 	display: grid;
-	grid-template-columns: 300px 1fr;
+	grid-template-columns: 30vw 1fr;
 	gap: 20px;
 	height: 100%;
 	overflow-y: auto;
@@ -195,8 +195,17 @@ h1, h2, h3, h4, h5, h6, .box-header, .line-label, .button {
 
 /* Fixed side bar */
 ._fixed {
-position: fixed;
-width: 27.5vw;
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	overflow-y: auto;
+	background-color: var(--bg-color);
+	padding: 20px;
+	box-sizing: border-box;
+}
+.col-center {
+	padding: 0;
+	box-sizing: border-box;
 }
 
 /* Box */
@@ -372,9 +381,13 @@ ul li:before { content: '> '; color: var(--primary-color); font-weight:600; }
 a{ color: inherit; text-decoration: none; }
 
 /* Responsive adjustment */
-@media (max-width: 900px) {
-	.layout-grid { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+	.layout-grid { grid-template-columns: 100%; }
 	.three { grid-template-columns: 1fr; }
+	
+	/* if screen width < 768px, the side bar will be hidden */
+	aside { display: none; }
+	.col-center { width: 100%; }
 }
 
 /* Scrollbar style */
