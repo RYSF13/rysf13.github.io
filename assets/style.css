@@ -200,7 +200,7 @@ h1, h2, h3, h4, h5, h6, .box-header, .line-label, .button {
 	height: 100vh;
 	overflow-y: auto;
 	background-color: var(--bg-color);
-	padding: 20px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 .col-center {
