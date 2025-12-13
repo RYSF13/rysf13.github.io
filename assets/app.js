@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}, 500);
 	});
 
-	// ----- audio system -----
+		// ----- audio system -----
 	function setupAudioSystem() {
 		const AudioContext = window.AudioContext || window.webkitAudioContext;
 		audioCtx = new AudioContext();
@@ -51,28 +51,62 @@ document.addEventListener('DOMContentLoaded', () => {
 		// --- Play background music (bg.mp3) ---
 		window.bgMusicElement = new Audio('assets/bg.mp3');
 		bgMusicElement.loop = true;
-		bgMusicElement.crossOrigin = "anonymous"; // Dealing with cross-domain problems
+		bgMusicElement.crossOrigin = "anonymous"; 
 
-		// Create analyzer node (for oscilloscope)
+		// Create analyzer node
 		analyser = audioCtx.createAnalyser();
-		analyser.fftSize = 2048; // The size of the sampling window
+		analyser.fftSize = 2048; 
 		const bufferLength = analyser.frequencyBinCount;
 		dataArray = new Uint8Array(bufferLength);
+
+		// Low-Pass Filter
+		const biquadFilter = audioCtx.createBiquadFilter();
+		biquadFilter.type = "lowpass";
+		biquadFilter.frequency.value = 1250;
+		biquadFilter.Q.value = 0.5;
 
 		// Create media source node
 		try {
 			audioSource = audioCtx.createMediaElementSource(bgMusicElement);
 
-			audioSource.connect(analyser);
+			// Connection Logic:
+			
+			// 1. Source -> Filter (process the tone first)
+			
+			// 2. Filter -> Analyzer (The analyzer reads the filtered data)
+			
+			// 3. Analyzer -> Output
+			audioSource.connect(biquadFilter);
+			biquadFilter.connect(analyser);
 			analyser.connect(audioCtx.destination);
 			
 			bgMusicElement.play().catch(e => console.error("Audio Play Error:", e));
 		} catch (err) {
-			console.error("CORS Error: Please use the local server to run to enable the oscilloscope.", err);
+			console.error("CORS Error/Setup Error", err);
 			bgMusicElement.play();
 		}
-		
+
+		const bgmSwitchBtn = document.getElementById('bgmSwitch');
+		if (bgmSwitchBtn) {
+			bgmSwitchBtn.innerText = "BGM: ON";
+
+			bgmSwitchBtn.addEventListener('click', function() {
+
+				if (audioCtx.state === 'suspended') {
+					audioCtx.resume();
+				}
+
+				if (bgMusicElement.paused) {
+					bgMusicElement.play();
+					this.innerText = "BGM: ON";
+				} else {
+					bgMusicElement.pause();
+					this.innerText = "BGM:OFF";
+				}
+			});
+		}
 	}
+	
 	// ----- Real waveform oscilloscope rendering -----
 	function drawOscilloscope() {
 		const canvas = document.getElementById('oscilloscope');
@@ -80,13 +114,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const ctx = canvas.getContext('2d');
 		
-		// New: Use ResizeObserver to automatically handle responsive adjustments and 'display: none' after recovery
+		//Automatically handle responsive adjustments and 'display: none' after recovery
 		const resizeObserver = new ResizeObserver(entries => {
 			for (let entry of entries) {
 				// Get the width of the parent container
 				const newWidth = Math.floor(entry.contentRect.width);
 				
-				// Reset only when the width is greater than 0 (that is, the sidebar is visible) and does not match the width of the current canvas
+				// Reset only when the width > 0 (that is, the sidebar is visible) and does not match the width of the current canvas
 				if (newWidth > 0 && canvas.width !== newWidth) {
 					canvas.width = newWidth;
 					canvas.height = 80; // Maintain the fixed height in the original code and it can also be modified as needed
