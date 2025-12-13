@@ -8,16 +8,18 @@
 /_/ |_| /_//____/_/    /_//____/  
                                   
 -->
-
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>RYSF13 // SYSTEM_V.1.0</title>
 	<!-- Import fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css2?ffamily=Consolas:ital,wght@0,400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Consolas:ital,wght@0,400&display=swap" rel="stylesheet">
+	<!-- Icon -->
+	<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+	<!-- Stylesheet -->
 	<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -43,7 +45,7 @@
 		<header class="top-bar">
 			<div class="logo">RYSF13 // <span class="highlight">TERMINAL_01</span></div>
 			<div class="marquee-container">
-				<div class="marquee-content">&nbsp;CONNECTION ESTABLISHED </div>
+				<div class="marquee-content">&nbsp;CONNECTION &nbsp;ESTABLISHED </div>
 			</div>
 			<div class="status-indicator">ONLINE <span class="blink-dot"></span></div>
 		</header>
@@ -55,11 +57,9 @@
 				<div class="box">
 					<div class="box-header">SYS_INFO</div>
 					<ul class="data-list">
-						<li><span>UPTIME:</span> 4892h</li>
-						<li><span>CPU_TEMP:</span> 42°C</li>
-						<li><span>CORE:</span> STABLE</li>
-						<li><span>FPS: </span><div id="fps"></div></li>
-						<li><span>SYS_TIME: </span><div id="time"></div></li>
+						<li><span>CORE</span> STABLE</li>
+						<li><span>FPS </span><div id="fps"></div></li>
+						<li><span>SYS_TIME </span><div id="time"></div></li>
 					</ul>
 				</div>
 
@@ -79,6 +79,7 @@
 					<div class="progress-bar secondary" style="--p: 32%"></div>
 				</div>
 				
+				<button class="button full" id="bgmSwitch">BGM: ON</button>				
 			</div></aside>
 
 			<!-- Center -->
@@ -136,7 +137,7 @@
 					</div>
 				</div>
 			</section>
-		</div><br><br><br>
+		</div>
 	</main>
 
 	<script src="assets/app.js"></script>
