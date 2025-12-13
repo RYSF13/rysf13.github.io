@@ -58,7 +58,7 @@ body {
 		rgba(18, 16, 16, 0) 50%, 
 		rgba(0, 0, 0, 0.25) 50%
 	), linear-gradient(
-		90deg, 
+		90deg,
 		rgba(255, 0, 0, 0.06), 
 		rgba(0, 255, 0, 0.02), 
 		rgba(0, 0, 255, 0.06)
@@ -67,6 +67,25 @@ body {
 	pointer-events: none;
 	z-index: 999;
 }
+
+.scanline {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 10px;
+	background:linear-gradient(
+		rgba(0, 0, 0, 0) 0%, 
+		rgba(0, 0, 0, 0.05) 50%,
+		rgba(0, 0, 0, 0) 100%
+	);
+	backdrop-filter: blur(3px);
+	pointer-events: none;
+	z-index: 1000;
+	animation:scan linear 6s infinite;
+}
+
+@keyframes scan { 0% { transform: translateY(-2vw); } 100% { transform: translateY(102vw); } }
 
 /* Font typesting */
 h1, h2, h3, h4, h5, h6, .box-header, .line-label, .button {
@@ -112,15 +131,17 @@ h1, h2, h3, h4, h5, h6, .box-header, .line-label, .button {
 	cursor: pointer;
 	transition: all 0.1s steps(2);
 	box-shadow: 4px 4px 0px var(--dim-color);
+	position: relative;
 	font-weight: bold;
 }
 
-.button .full {
+.button.full {
 	width: 100%;
 	font-size: 100%;
 	margin-top: 8px;
 	margin-bottom: 8px;
 }
+
 
 .button:hover {
 	background: var(--primary-color);
@@ -132,6 +153,12 @@ h1, h2, h3, h4, h5, h6, .box-header, .line-label, .button {
 .button:active {
 	transform: translate(4px, 4px);
 	box-shadow: none;
+}
+
+#bgmSwitch:hover, #bgmSwitch:active {
+	background: transparent;
+	color: var(--primary-color);
+	transform: none;
 }
 
 .big-btn {
@@ -200,7 +227,7 @@ h1, h2, h3, h4, h5, h6, .box-header, .line-label, .button {
 	height: 100vh;
 	overflow-y: auto;
 	background-color: var(--bg-color);
-	padding: 0px;
+	padding: 20px;
 	box-sizing: border-box;
 }
 .col-center {
@@ -349,8 +376,8 @@ ul li:before { content: '> '; color: var(--primary-color); font-weight:600; }
 	margin-bottom: 20px;
 }
 .img-placeholder {
-	width: 150px;
-	height: 150px;
+	width: 250px;
+	height: 250px;
 	background: #151515;
 	border: 1px solid var(--dim-color);
 	display: flex;
