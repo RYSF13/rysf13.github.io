@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>RYSF13_TERMINAL // USER_INTERFACE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+
+    <!-- CRT Overlay Effects (Pointer events none) -->
+    <div class="crt-overlay">
+        <div class="scanline"></div>
+        <div class="noise"></div>
+        <div class="screen-glare"></div>
+    </div>
+
+    <!-- Initialization / Boot Screen -->
+    <div id="init-screen">
+        <div class="init-container">
+            <h1 class="init-title">RYSF13_TERMINAL</h1>
+            <div class="terminal-window" id="boot-terminal">
+                <!-- Logs will appear here -->
+            </div>
+            <div class="loading-area">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="boot-progress"></div>
+                </div>
+                <div class="sys-status-text">SYSTEM_CHECK: <span id="sys-check-status">RUNNING</span></div>
+            </div>
+            <button id="btn-initialize" class="button hidden">INITIALIZE_SYSTEM</button>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bg-audio" src="assets/bg.mp3" loop></audio>
+
+    <!-- Main Layout -->
+    <div class="layout-container hidden" id="main-interface">
+        
+        <!-- Fixed Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>RYSF13_TERMINAL</h2>
+                <h3>world.execute(me);</h3>
+            </div>
+            
+            <div class="data-list">
+                <div class="data-row">
+                    <span class="label">SYS_TIME</span>
+                    <span class="value" id="sys-time">00:00:00</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">FPS</span>
+                    <span class="value" id="sys-fps">60</span>
+                </div>
+                <div class="data-row">
+                    <span class="label">CPU_TEMP</span>
+                    <span class="value"><span id="cpu-temp">45</span>°C</span>
+                </div>
+                <div class="data-row stack">
+                    <span class="label">MEM_USAGE</span><br>
+                    <span class="value" id="mem">30%</span>
+                </div>
+            </div>
+
+            <div class="oscilloscope-container">
+                <div class="box-header">AUDIO_VISUALIZER</div>
+                <canvas id="oscilloscope"></canvas>
+            </div>
+
+            <div class="control-panel">
+                <button id="btn-audio-toggle" class="button full-width">AUDIO: OFF</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Section 1: Single Box -->
+            <section class="fade-in-section">
+                <div class="box">
+                    <div class="box-header">MSG_ID: 001 // WELCOME</div>
+                    <h3>SYSTEM_OVERVIEW</h3>
+                    <p>Hello administrator. Welcome to the RYSF13 Terminal. This terminal provides a direct link to the core mainframe. All interactions are monitored for quality assurance. </p>
+                    <div class="line"><span class="line-label">END_transmission</span></div>
+                </div>
+            </section>
+
+            <!-- Section 2: Three Columns -->
+            <section class="fade-in-section">
+                <div class="three">
+                    <div class="box">
+                        <div class="box-header">MOD_01</div>
+                        <h4>PROJECTS</h4>
+                        <ul class="retro-list">
+                            <li><a href="https://github.com/RYSF13/ToolJS/">ToolJS</a></li>
+                            <li><a href="https://github.com/RYSF13/CIH/">CIH(Archived)</a></li>
+                            <li><a href="https://github.com/RYSF13/FPL/">The Free Publishing License</a></li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <div class="box-header">MOD_02</div>
+                        <h4>LINKS</h4>
+                        <ul class="retro-list">
+                            <li><a href="https://www.lubeiluchen.cc">Lu Bei Lu Chen</a></li>
+                            <li><a href="https://iwriteiam.nl">Frans</a></li>
+                            <li><a href="https://code.golf">Code.Golf</a></li></ul>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <div class="box-header">MOD_03</div>
+                        <h4>EXPLORE</h4>
+                        <ul class="retro-list">
+                            <li><a href="/escape/">Escape This World</a></li>
+                            <li><a href="/cicada3301/">3301</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Image & Text -->
+            <section class="fade-in-section">
+                <div class="img-text">
+                    <div class="img-wrapper">
+                        <img src="assets/img.png" alt="Image_01" onerror="this.src='https://placehold.co/600x400/1c1c1f/ffb000?text=NO_SIGNAL'">
+                        <div class="img-overlay">FIG_8.2</div>
+                    </div>
+                    <div class="text-content">
+                        <h3>WELCOME TO THE FUTURE</h3>
+                        <p>The tape hisses as the reel begins to spin, syncing with the low hum of the mainframe. The CRT monitor flickers to life, scrolling through lines of amber code as the analog systems align with the digital horizon.
+                        <br>Sensors loaded. Interface ready. Welcome to the future.
+                        <br>
+                        <p>> REF_CODE: XJ-99<br>> STATUS: COMPLETED</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="fade-in-section footer">
+                <div class="line"></div>
+                <div class="footer-content">
+                    <span>Copyright (c) Robert Ryan 20XX. All rights reserved.<span class="blink">_</span></span>
+                    <span class="status-indicator">| SYSTEM STATUS: NORMAL</span>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
